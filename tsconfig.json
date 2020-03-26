@@ -6,6 +6,8 @@
       "dom.iterable",
       "esnext"
     ],
+    "sourceMap": true,
+    "outDir": "dist",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -21,5 +23,9 @@
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
   ]
 }
