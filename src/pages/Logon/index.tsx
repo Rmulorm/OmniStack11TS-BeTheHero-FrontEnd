@@ -21,16 +21,16 @@ export default function Logon() {
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
 
-    try {
-      const response = await api.post<Session>('session', { id });
-
+    await api.post<Session>('session', { id })
+    .then((response) => {
       localStorage.setItem('ngoId', id);
       localStorage.setItem('ngoName', response.data.name);
 
       history.push('/profile');
-    } catch (err) {
+    })
+    .catch(() => {
       alert('ID Inválido.');
-    }
+    });
   }
 
   return(

@@ -19,7 +19,7 @@ export default function Register () {
 
   const history = useHistory();
 
-  async function handleRegister(event: FormEvent) {
+  function handleRegister(event: FormEvent) {
     event.preventDefault();
 
     const ngoData: Ngo ={
@@ -31,15 +31,14 @@ export default function Register () {
       uf
     };
 
-    try {
-      const response = await api.post<Ngo>('ngos', ngoData);
-
+    api.post<Ngo>('ngos', ngoData)
+    .then((response) => {
       alert(`Cadastro realizado com sucesso\nSeu ID é: ${response.data.id}`);
-
       history.push('/');
-    } catch (err) {
+    })
+    .catch(() => {
       alert('Erro no Cadastro, tente novamente.');
-    }
+    });
   }
 
   return(

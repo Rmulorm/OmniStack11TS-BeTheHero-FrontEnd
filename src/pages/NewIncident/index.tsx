@@ -18,7 +18,7 @@ export default function NewIncident () {
 
   const history = useHistory();
 
-  async function handleRegister(event: FormEvent) {
+  function handleRegister(event: FormEvent) {
     event.preventDefault();
 
     const incidentData = {
@@ -27,17 +27,17 @@ export default function NewIncident () {
       value
     };
 
-    try {
-      await api.post('incidents', incidentData, {
-        headers: {
-          Authorization: ngoId
-        }
-      });
-
+    api.post('incidents', incidentData, {
+      headers: {
+        Authorization: ngoId
+      }
+    })
+    .then(() => {
       history.push('/profile');
-    } catch (err) {
+    })
+    .catch(() => {
       alert('Erro ao cadastrar caso, tente novamente.');
-    }
+    });
   }
 
   return(
