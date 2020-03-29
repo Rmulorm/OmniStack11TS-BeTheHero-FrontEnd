@@ -1,15 +1,19 @@
-import React, { FunctionComponent, useState, FormEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi'
-
-import api from '../../services/api';
 
 import './styles.css'
 
 import heroesImg from '../../assets/heroes.png';
 import logoImg from '../../assets/logo.svg';
 
-const Logon: FunctionComponent = (props) => {
+import api from '../../services/api';
+
+interface Session {
+  name: string;
+}
+
+export default function Logon() {
 
   const[id, setId] = useState('');
   const history = useHistory();
@@ -18,7 +22,7 @@ const Logon: FunctionComponent = (props) => {
     event.preventDefault();
 
     try {
-      const response = await api.post('session', { id });
+      const response = await api.post<Session>('session', { id });
 
       localStorage.setItem('ngoId', id);
       localStorage.setItem('ngoName', response.data.name);
@@ -56,5 +60,3 @@ const Logon: FunctionComponent = (props) => {
     </div>
   );
 }
-
-export default Logon;

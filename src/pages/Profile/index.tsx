@@ -2,23 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi';
 
-import api from '../../services/api';
-
 import './styles.css'
 
 import logoImg from '../../assets/logo.svg';
-import incident from '../../types/incident';
+
+import api from '../../services/api';
+import Incident from '../../types/incident';
 
 export default function Profile () {
+
   const ngoName = localStorage.getItem('ngoName');
   const ngoId = localStorage.getItem('ngoId');
 
   const history = useHistory();
 
-  const [incidents, setIncidents] = useState<incident[]>([]);
+  const [incidents, setIncidents] = useState<Incident[]>([]);
 
   useEffect(() =>{
-    api.get('profile', {
+    api.get<Incident[]>('profile', {
       headers: {
         Authorization: ngoId
       }

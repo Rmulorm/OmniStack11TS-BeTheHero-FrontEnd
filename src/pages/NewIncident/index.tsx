@@ -1,14 +1,15 @@
 import React, { useState, FormEvent } from 'react';
-
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi'
 
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
+
 import api from '../../services/api';
 
 export default function NewIncident () {
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [value, setValue] = useState('');
@@ -50,7 +51,7 @@ export default function NewIncident () {
 
           <Link className="back-link" to="/profile">
             <FiArrowLeft size={16} color="#E02041" />
-            Voltar par home
+            Voltar para home
           </Link>
         </section>
 
@@ -67,8 +68,6 @@ export default function NewIncident () {
           />
           <input
             placeholder="Valor em reais"
-            // type="number"
-            // step="any"
             value={value}
             onChange={event => setValue(event.target.value)}
           />

@@ -1,4 +1,4 @@
-export default interface incident {
+export default interface Incident {
   id: number,
   title: string,
   description: string,

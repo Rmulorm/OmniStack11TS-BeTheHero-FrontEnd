@@ -2,11 +2,12 @@ import React, { FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi'
 
-import api from '../../services/api';
-
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
+
+import api from '../../services/api';
+import Ngo from '../../types/ngo';
 
 export default function Register () {
 
@@ -21,7 +22,8 @@ export default function Register () {
   async function handleRegister(event: FormEvent) {
     event.preventDefault();
 
-    const ngoData = {
+    const ngoData: Ngo ={
+      id: '',
       name,
       email,
       whatsApp,
@@ -30,7 +32,7 @@ export default function Register () {
     };
 
     try {
-      const response = await api.post('ngos', ngoData);
+      const response = await api.post<Ngo>('ngos', ngoData);
 
       alert(`Cadastro realizado com sucesso\nSeu ID é: ${response.data.id}`);
 
